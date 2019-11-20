@@ -1,9 +1,9 @@
 /** 
  * Proyecto: Juego de la vida.
  *  Prueba Junit5 del paquete modelo según el modelo1
- *  @since: prototipo0.1.0
+ *  @since: prototipo 0.1.0
  *  @source: AllTest.java 
- *  @version: 1.1 - 2019/11/20
+ *  @version: 0.1.0 - 2019/11/20
  *  @author: ajp
  */
 

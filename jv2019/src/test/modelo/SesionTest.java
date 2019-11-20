@@ -1,7 +1,7 @@
 /** Proyecto: Juego de la vida.
  *  Prueba Junit5 de la clase SesionUsuario según el modelo 1.
  *  @since: prototipo 0.1.0
- *  @source: SesionUsuarioTest.java 
+ *  @source: SesionTest.java 
  *  @version: 0.1.0 - 2019/11/20
  *  @author: ajp
  */
@@ -24,10 +24,10 @@ import java.util.Date;
 
 class SesionTest {
 
-	private Sesion sesion1;
-	private static Sesion sesion2;
+	private static Sesion sesion1;
 	private static Usuario usr;
 	private static Date fecha;
+	private Sesion sesion2;
 
 	/**
 	 * Método que se ejecuta una sola vez al principio del conjunto pruebas.
@@ -39,12 +39,12 @@ class SesionTest {
 				"Luis", "Roca Mora",
 				"Roncal, 10, 30130, Murcia", 
 				"luis@gmail.com", 
-				new Date(2000, 03, 21),
-				new Date(2019, 11, 17), 
+				new Date(2000-1900, 3-1, 21),
+				new Date(2019-1900, 11-1, 17), 
 				"Miau#12", 
 				Usuario.ROLES[1]);
-		fecha = new Date(2019, 11, 20, 10, 35, 2);
-		sesion2 = new Sesion(usr, fecha); 
+		fecha = new Date(2019-1900, 11-1, 20, 10, 35, 2);
+		sesion1 = new Sesion(usr, fecha); 
 	}
 
 	/**
@@ -55,7 +55,7 @@ class SesionTest {
 	public static void limpiarDatosFijos() {
 		usr = null;
 		fecha = null;
-		sesion2 = null;
+		sesion1 = null;
 	}
 
 	/**
@@ -63,7 +63,7 @@ class SesionTest {
 	 */
 	@BeforeEach
 	public void iniciarlizarDatosVariables() {	
-			sesion1 = new Sesion();
+			sesion2 = new Sesion();
 	}
 
 	/**
@@ -71,42 +71,42 @@ class SesionTest {
 	 */
 	@AfterEach
 	public void borrarDatosPrueba() {	
-		sesion1 = null;
+		sesion2 = null;
 	}
 
 	// Test's con DATOS VALIDOS
 	@Test
 	public void testSesionConvencional() {	
-		assertEquals(sesion2.getUsr(), usr);
-		assertEquals(sesion2.getFecha(), fecha);
-	}
-
-	@Test
-	public void testSesionDefecto() {
-		assertNotNull(sesion1.getUsr());
-		assertNotNull(sesion1.getFecha());
-	}
-
-	@Test
-	public void testSesionCopia() {
-		assertNotSame(sesion2, new Sesion(sesion2));
-	}
-
-	@Test
-	public void testSetUsr() {
-		sesion1.setUsr(usr);
 		assertEquals(sesion1.getUsr(), usr);
-	}
-
-	@Test
-	public void testSetFecha() {
-		sesion1.setFecha(fecha);
 		assertEquals(sesion1.getFecha(), fecha);
 	}
 
 	@Test
+	public void testSesionDefecto() {
+		assertNotNull(sesion2.getUsr());
+		assertNotNull(sesion2.getFecha());
+	}
+
+	@Test
+	public void testSesionCopia() {
+		assertNotSame(sesion1, new Sesion(sesion1));
+	}
+
+	@Test
+	public void testSetUsr() {
+		sesion2.setUsr(usr);
+		assertEquals(sesion2.getUsr(), usr);
+	}
+
+	@Test
+	public void testSetFecha() {
+		sesion2.setFecha(fecha);
+		assertEquals(sesion2.getFecha(), fecha);
+	}
+
+	@Test
 	public void testToString() {
-		assertNotNull(sesion1.toString());
+		assertNotNull(sesion2.toString());
 	}
 
 	// Test's CON DATOS NO VALIDOS

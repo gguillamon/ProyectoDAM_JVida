@@ -2,7 +2,7 @@
  * Proyecto: Juego de la vida.
  * Clase JUnit5 de prueba automatizada de las características de la clase Usuario según el modelo 1.
  * @since: prototipo 0.1.0
- * @source: TestUsuario.java 
+ * @source: UsuarioTest.java 
  * @version: 0.1.0 - 2019.11.21
  * @author: ajp
  */
@@ -34,8 +34,8 @@ public class UsuarioTest {
 				"Luis", "Roca Mora",
 				"Roncal, 10, 30130, Murcia", 
 				"luis@gmail.com", 
-				new Date(2000, 03, 21),
-				new Date(2019, 11, 17), 
+				new Date(2000-1900, 3-1, 21),
+				new Date(2019-1900, 11-1, 17), 
 				"Miau#12", 
 				Usuario.ROLES[1]);
 	}
@@ -92,14 +92,14 @@ public class UsuarioTest {
 	}
 	@Test
 	public void testSetFechaNacimiento() {
-		usuario2.setFechaNacimiento(new Date(2000, 3, 21));
-		assertEquals(usuario2.getFechaNacimiento(), new Date(2000, 3, 21));
+		usuario2.setFechaNacimiento(new Date(2000-1900, 3-1, 21));
+		assertEquals(usuario2.getFechaNacimiento(), new Date(2000-1900, 3-1, 21));
 	}
 	
 	@Test
 	public void testSetFechaAlta() {
-		usuario2.setFechaAlta(new Date(2019, 11, 17));
-		assertEquals(usuario2.getFechaAlta(), new Date(2019, 11, 17));
+		usuario2.setFechaAlta(new Date(2019-1900, 11-1, 17));
+		assertEquals(usuario2.getFechaAlta(), new Date(2019-1900, 11-1, 17));
 	}
 
 	@Test
@@ -183,11 +183,9 @@ public class UsuarioTest {
 	
 	@Test
 	public void testSetFechaNacimientoFuturo() {	
-			usuario1.setFechaNacimiento(new Date(3020, 9, 10));
+			usuario1.setFechaNacimiento(new Date(3020-1900, 9-1, 10));
 			// No debe haber cambios...
-			assertEquals(usuario1.getFechaNacimiento().getYear(), 2000);
-			assertEquals(usuario1.getFechaNacimiento().getMonth(), 3);
-			assertEquals(usuario1.getFechaNacimiento().getDate(), 21);
+			assertEquals(usuario1.getFechaNacimiento(), new Date(2000-1900, 3-1, 21));
 	}
 	
 	@Test
@@ -202,8 +200,9 @@ public class UsuarioTest {
 
 	@Test
 	public void testSetFechaAltaFuturo() {	
-			usuario1.setFechaAlta(new Date(3020, 9, 10));
-			assertEquals(usuario1.getFechaAlta(), new Date(2019, 11, 17));
+			usuario1.setFechaAlta(new Date(3020-1900, 9-1, 10));
+			// No debe haber cambios...
+			assertEquals(usuario1.getFechaAlta(), new Date(2019-1900, 11-1, 17));
 	}
 	
 	@Test

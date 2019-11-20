@@ -1,10 +1,13 @@
-/** Proyecto: Juego de la vida.
+/** 
+ * Proyecto: Juego de la vida.
  *  Prueba Junit5 de la clase Simulacion según el modelo 1.
  *  @since: prototipo 0.1.0
- *  @source: CorreoTest.java 
+ *  @source: SimulacionTest.java 
  *  @version: 0.1.0 - 2019/11/19
  *  @author: ajp
  */
+
+package modelo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -38,13 +41,13 @@ public class SimulacionTest {
 				"Luis", "Roca Mora",
 				"Roncal, 10, 30130, Murcia", 
 				"luis@gmail.com", 
-				new Date(2000, 03, 21),
-				new Date(2019,11,17), 
+				new Date(2000-1900, 3-1, 21),
+				new Date(2019-1900,11-1,17), 
 				"Miau#12", 
 				Usuario.ROLES[1]);
-		fecha = new Date(2019, 11, 20, 10, 35, 2);
+		fecha = new Date(2019-1900, 11-1, 20, 10, 35, 2);
 		espacioMundo = new byte[10][10];
-		simulacion1 = new Simulacion(usr, fecha, espacioMundo);
+		simulacion1 = new Simulacion(usr, fecha, espacioMundo, Simulacion.FORMAS_ESPACIO[0]);
 	}
 
 	@AfterAll
@@ -63,7 +66,7 @@ public class SimulacionTest {
 	public void testSimulacionConvencional() {	
 		assertSame(simulacion1.getUsr(), usr);
 		assertSame(simulacion1.getFecha(), fecha);
-		assertSame(simulacion1.getMundo(), espacioMundo);
+		assertSame(simulacion1.getEspacioMundo(), espacioMundo);
 	}
 
 	@Test
@@ -72,7 +75,7 @@ public class SimulacionTest {
 		assertEquals(simulacion2.getFecha().getYear(), new Date().getYear());
 		assertEquals(simulacion2.getFecha().getMonth(), new Date().getMonth());
 		assertEquals(simulacion2.getFecha().getDate(), new Date().getDate());
-		assertNotNull(simulacion2.getMundo());
+		assertNotNull(simulacion2.getEspacioMundo());
 	}
 
 	@Test
@@ -88,8 +91,8 @@ public class SimulacionTest {
 
 	@Test
 	public void testSetMundo() {
-		simulacion2.setMundo(espacioMundo);
-		assertSame(simulacion2.getMundo(), espacioMundo);
+		simulacion2.setEspacioMundo(espacioMundo);
+		assertSame(simulacion2.getEspacioMundo(), espacioMundo);
 	}
 
 	@Test
@@ -119,11 +122,11 @@ public class SimulacionTest {
 	@Test
 	public void testSetMundoNull() {
 		try {
-			simulacion2.setMundo(null);
+			simulacion2.setEspacioMundo(null);
 			fail("No debe llegar aquí...");
 		} 
 		catch (AssertionError e) { 
-			assertTrue(simulacion2.getMundo() != null);
+			assertTrue(simulacion2.getEspacioMundo() != null);
 		}
 	}
 	
